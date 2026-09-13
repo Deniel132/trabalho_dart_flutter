@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-
 import '../widget/hardwarecard.dart';
 import '../models/hardware.dart';
 import '../models/Manutencao.dart';
+import '../screens/register_page.dart';
+import '../widget/customAppBar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,9 +12,9 @@ class HomePage extends StatefulWidget {
   State createState() => _HomePage();
 }
 
-class _HomePage extends State<HomePage> {
-  final int _currentIndex = 0;
-  Manutencao manutencao = Manutencao();
+class _HomePage extends State<HomePage>{
+  int currentIndex = 0;
+  final Manutencao manutencao = Manutencao();
 
   @override
   void initState() {
@@ -96,32 +97,7 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: Row(
-          children: [
-            Image.asset('logo.png', width: 40, height: 40),
-            const SizedBox(width: 8),
-            RichText(
-              text: TextSpan(
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                children: [
-                  TextSpan(
-                    text: 'Tech',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  TextSpan(
-                    text: 'Fix',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: Color.fromARGB(255, 11, 19, 37),
-      ),
-
+      appBar:  const CustomAppBar(titleText: 'Home'),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Center(
@@ -326,10 +302,17 @@ class _HomePage extends State<HomePage> {
           );
         },
       ),
-
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {},
+        currentIndex: currentIndex,
+        onTap: (index) async{
+          if (index == 1) {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RegisterPage(manutencao: manutencao,)),
+            );
+          }
+          setState(() {});
+        },
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
         items: const [
@@ -340,3 +323,4 @@ class _HomePage extends State<HomePage> {
     );
   }
 }
+
