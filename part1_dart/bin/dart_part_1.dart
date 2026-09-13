@@ -4,31 +4,6 @@ import './models/games.dart';
 import 'models/Manutencao.dart';
 
 void main() {
-  Pc pc2 = Pc(
-    processador: 'Intel Core i5',
-    qtdMemoriaRam: 16,
-    placaDeVideo: 'GTX 1660',
-    armazenamento: '500GB',
-    tipoArmazenamento: tipoArmazenamento.SSD,
-    benchmark: 200,
-    status: status.CONCLUIDO,
-    valorManutencao: 150.0,
-    dataFabricacao: DateTime(2024, 5, 10),
-    valor: 3500.0,
-  );
-
-  Pc pc3 = Pc(
-    processador: 'Ryzen 5 5600',
-    qtdMemoriaRam: 16,
-    placaDeVideo: 'RTX 3060',
-    armazenamento: '1TB',
-    tipoArmazenamento: tipoArmazenamento.SSD,
-    benchmark: 300,
-    status: status.EM_REPARO,
-    valorManutencao: 200.0,
-    dataFabricacao: DateTime(2023, 8, 20),
-    valor: 4500.0,
-  );
 
   Games jogo1 = Games(benchmark_min: 199.00, nome: "Minecraft", preco: 100.10);
 
