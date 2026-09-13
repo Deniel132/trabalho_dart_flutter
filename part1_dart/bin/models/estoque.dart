@@ -3,6 +3,7 @@ class Estoque {
   final List<Hardware> _hardwares = [];
 
   void adicionarEstoque(Hardware hardware){
+    print("Enviado hardwares para Estoque: ${hardware.fichaTecnica()} ");
     _hardwares.add(hardware);
   }
 
