@@ -1,14 +1,8 @@
 import './models/hardware.dart';
 import './models/pc.dart';
-import './models/games.dart';
 import 'models/Manutencao.dart';
 
 void main() {
-
-  Games jogo1 = Games(benchmark_min: 199.00, nome: "Minecraft", preco: 100.10);
-
-  Games jogo2 = Games(benchmark_min: 300.00, nome: "Fornai", preco: 100.10);
-
   print("===== [1] ENTIDADE PRINCIPAL =====\n");
   Hardware h1 = Hardware(
     processador: 'Intel Core i7',
@@ -29,19 +23,17 @@ void main() {
   Pc pc1 = Pc(
     processador: 'Intel Core i7',
     qtdMemoriaRam: 16,
-    placaDeVideo: 'GTX 1660',
-    armazenamento: '500GB',
+    placaDeVideo: 'RTX 3060',
+    armazenamento: '1TB',
     tipoArmazenamento: tipoArmazenamento.SSD,
-    benchmark: 500,
-    status: status.CONCLUIDO,
-    valorManutencao: 150.0,
-    dataFabricacao: DateTime(2025, 6, 15),
+    benchmark: 450,
+    status: status.EM_REPARO,
+    valorManutencao: 250.0,
+    dataFabricacao: DateTime(2023, 5, 10),
     valor: 4500.0,
+    sistemaOperacional: 'Windows 11 pro',
+    tipoDeUso: tipoDeUso.GAMER,
   );
-  pc1.intallGame(jogo2);
-  pc1.intallGame(jogo1);
-  double var1 = pc1.getMediaBenchmarkGames();
-  print(var1);
   print(infoh1);
   print(pc1.fichaTecnica());
 
@@ -60,8 +52,6 @@ void main() {
     valorManutencao: 500.00,
   );
   manutencao.enviarParaManutencao(h2);
-  print("Jogos Instalados: ${pc1.getTotalInstalado()}");
-  pc1.showGame();
 
   print("\n===== [4] ENCAPSULAMENTO =====");
 
@@ -81,9 +71,4 @@ void main() {
   manutencao.enviarParaManutencao(h3);
 
   print("Total depois: ${manutencao.getTotalHardware}");
-
-  print("Média antes de baixar o jogo: ${pc1.getMediaBenchmarkGames()}");
-  Games jogo3 = Games(benchmark_min: 55.00, nome: "Roblox", preco: 0.00);
-  pc1.intallGame(jogo3);
-  print("Média depois de baixar o jogo: ${pc1.getMediaBenchmarkGames()}");
 }
