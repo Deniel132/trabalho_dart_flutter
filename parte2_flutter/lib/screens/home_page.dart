@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widget/hardwarecard.dart';
+import '../models/hardware.dart';
+import '../models/Manutencao.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,7 +12,37 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage>{
   final int _currentIndex = 0;
-  var totalCalculado = 120;
+  Manutencao manutencao = Manutencao();
+
+  @override
+  void initState() {
+    super.initState();
+
+    Hardware h1 = Hardware(
+      processador: 'Intel Core i7',
+      qtdMemoriaRam: 32,
+      placaDeVideo: 'RTX 3060',
+      armazenamento: '1TB',
+      tipoArmazenamento: tipoArmazenamento.SSD,
+      benchmark: 300,
+      status: status.EM_REPARO,
+      valorManutencao: 250.20,
+    );
+
+    Hardware h2 = Hardware(
+      processador: "i5-10400f",
+      qtdMemoriaRam: 16,
+      placaDeVideo: "RTX 5070Ti",
+      armazenamento: "2tb",
+      tipoArmazenamento: tipoArmazenamento.HD,
+      benchmark: 200.50,
+      status: status.AGUARDANDO_PECAS,
+      valorManutencao: 500.00,
+    );
+
+    manutencao.enviarParaManutencao(h1);
+    manutencao.enviarParaManutencao(h2);
+  }
 
 
   @override
@@ -54,7 +87,9 @@ class _HomePage extends State<HomePage>{
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 20),
-            Row(
+          IntrinsicHeight(
+            child:  Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   child: Card(
@@ -95,16 +130,16 @@ class _HomePage extends State<HomePage>{
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'R\$ ${totalCalculado.toStringAsFixed(2).replaceAll('.', ',')}',
-                            style: const TextStyle(
+                            'R\$ ${manutencao.getValorTotal().toStringAsFixed(2)}',
+                            style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF0B1325),
                             ),
                           ),
                           const SizedBox(height: 4),
-                          const Text(
-                            '2 manutenções ativas',
+                          Text(
+                            '${manutencao.getByStatus([status.AGUARDANDO_PECAS, status.EM_REPARO]).length} manutenções ativas',
                             style: TextStyle(
                               fontSize: 12,
                               color: Color(0xFF5A6E85),
@@ -155,10 +190,10 @@ class _HomePage extends State<HomePage>{
                           ),
                           const SizedBox(height: 12),
                           RichText(
-                            text: const TextSpan(
+                            text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: '2 ',
+                                  text: '${manutencao.getTotalHardware} ',
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -191,6 +226,7 @@ class _HomePage extends State<HomePage>{
                 ),
               ],
             ),
+          ),
             const SizedBox(height: 30),
             const Text(
               'Hardwares em manutenção',
@@ -201,12 +237,11 @@ class _HomePage extends State<HomePage>{
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.only(bottom: 16),
-                itemCount: 1,
+                itemCount: manutencao.getTotalHardware,
                 itemBuilder: (context, index) {
-                  final item = "oi";
-                  final isPeca = item == 'Aguardando Peça';
+                  final item = manutencao.getByIndex(index);
 
-                  return null;
+                  return HardwareCard(hardware: item,);
                 },
               ),
             ),
