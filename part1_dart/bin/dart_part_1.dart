@@ -1,7 +1,7 @@
 import './models/hardware.dart';
 import './models/pc.dart';
 import './models/games.dart';
-import './models/estoque.dart';
+import 'models/Manutencao.dart';
 
 void main() {
   Hardware h1 = Hardware(
@@ -54,10 +54,10 @@ void main() {
   print(pc2);
 
   print("\n===== [3] COMPOSIÇÃO =====\n");
-  Estoque estoque = Estoque();
-  estoque.adicionarEstoque(h1);
+  Manutencao manutencao = Manutencao();
+  manutencao.enviarParaManutencao(h1);
 
-  print("Total de Hardware no estoque: ${estoque.getTotalHardware}");
+  print("Total de Hardware no estoque: ${manutencao.getTotalHardware}");
 
   Hardware h2 = Hardware(
     processador: "i5-10400f",
@@ -67,13 +67,13 @@ void main() {
     tipoArmazenamento: tipoArmazenamento.SSD,
   );
 
-  estoque.adicionarEstoque(h2);
+  manutencao.enviarParaManutencao(h2);
   print("Jogos Instalados: ${pc1.getTotalInstalado()}");
   pc1.showGame();
 
   print("\n===== [4] ENCAPSULAMENTO =====");
 
-  print("Total antes: ${estoque.getTotalHardware}");
+  print("Total antes: ${manutencao.getTotalHardware}");
 
   Hardware h3 = Hardware(
     processador: "Intel i5",
@@ -83,9 +83,9 @@ void main() {
     tipoArmazenamento: tipoArmazenamento.SSD,
   );
 
-  estoque.adicionarEstoque(h3);
+  manutencao.enviarParaManutencao(h3);
 
-  print("Total depois: ${estoque.getTotalHardware}");
+  print("Total depois: ${manutencao.getTotalHardware}");
 
   print("Média antes de baixar o jogo: ${pc1.getMediaBenchmarkGames()}");
   Games jogo3 = Games(benchmark_min: 55.00, nome: "Roblox", preco: 0.00);

@@ -1,8 +1,8 @@
 import './hardware.dart';
-class Estoque {
+class Manutencao {
   final List<Hardware> _hardwares = [];
 
-  void adicionarEstoque(Hardware hardware){
+  void enviarParaManutencao(Hardware hardware){
     print("Enviado hardwares para Estoque: ${hardware.fichaTecnica()} ");
     _hardwares.add(hardware);
   }
