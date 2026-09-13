@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/hardware.dart';
-import '../screens/detailpage.dart';
+import '../screens/detail_page.dart';
 
 class HardwareCard extends StatelessWidget {
   final Hardware hardware;
