@@ -3,7 +3,7 @@ class Manutencao {
   final List<Hardware> _hardwares = [];
 
   void enviarParaManutencao(Hardware hardware){
-    print("Enviado hardwares para Estoque: ${hardware.fichaTecnica()} ");
+    print("Enviado hardwares para Manutenção: ${hardware.fichaTecnica()} ");
     _hardwares.add(hardware);
   }
 
