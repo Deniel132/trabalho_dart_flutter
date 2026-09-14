@@ -13,7 +13,7 @@ class InputOptions extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.isSelected,
-    required this.onTap
+    required this.onTap,
   });
 
   @override
@@ -27,7 +27,9 @@ class InputOptions extends StatelessWidget {
           color: isSelected ? const Color(0xFFEFF6FF) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? const Color(0xFF2563EB) : const Color(0xFFE2E8F0),
+            color: isSelected
+                ? const Color(0xFF2563EB)
+                : const Color(0xFFE2E8F0),
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -36,7 +38,9 @@ class InputOptions extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFF2563EB) : const Color(0xFFF1F5F9),
+                color: isSelected
+                    ? const Color(0xFF2563EB)
+                    : const Color(0xFFF1F5F9),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -55,7 +59,9 @@ class InputOptions extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
-                      color: isSelected ? const Color(0xFF1E3A8A) : const Color(0xFF0B1325),
+                      color: isSelected
+                          ? const Color(0xFF1E3A8A)
+                          : const Color(0xFF0B1325),
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

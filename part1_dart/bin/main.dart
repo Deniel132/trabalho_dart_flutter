@@ -1,6 +1,6 @@
 import './models/hardware.dart';
 import './models/pc.dart';
-import 'models/Manutencao.dart';
+import 'models/manutencao.dart';
 
 void main() {
   print("===== [1] ENTIDADE PRINCIPAL =====\n");
@@ -39,19 +39,24 @@ void main() {
 
   print("\n===== [3] COMPOSIÇÃO =====\n");
   Manutencao manutencao = Manutencao();
-  manutencao.enviarParaManutencao(h1);
-  print("Total de Hardware no estoque: ${manutencao.getTotalHardware}");
+
   Hardware h2 = Hardware(
-    processador: "i5-10400f",
+    processador: "Intel i5",
     qtdMemoriaRam: 16,
-    placaDeVideo: "RTX 5070Ti",
-    armazenamento: "2tb",
+    placaDeVideo: "RTX 3060",
+    armazenamento: "1TB",
     tipoArmazenamento: tipoArmazenamento.SSD,
-    benchmark: 200.50,
+    benchmark: 8500,
     status: status.AGUARDANDO_PECAS,
-    valorManutencao: 500.00,
+    valorManutencao: 300,
   );
-  manutencao.enviarParaManutencao(h2);
+
+  manutencao.adicionarManutencao(h1);
+  manutencao.adicionarManutencao(h2);
+
+  print("Quantidade de hardwares: ${manutencao.getTotalHardware}");
+  print("Hardwares dentro da manutenção:");
+  manutencao.mostrarHardware();
 
   print("\n===== [4] ENCAPSULAMENTO =====");
 
@@ -68,7 +73,7 @@ void main() {
     valorManutencao: 650.0,
   );
 
-  manutencao.enviarParaManutencao(h3);
+  manutencao.adicionarManutencao(h3);
 
   print("Total depois: ${manutencao.getTotalHardware}");
 }

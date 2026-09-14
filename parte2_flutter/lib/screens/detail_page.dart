@@ -5,10 +5,7 @@ import '../models/hardware.dart';
 class DetailPage extends StatelessWidget {
   final Hardware hardware;
 
-  const DetailPage({
-    super.key,
-    required this.hardware,
-  });
+  const DetailPage({super.key, required this.hardware});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +15,7 @@ class DetailPage extends StatelessWidget {
         backgroundColor: const Color(0xFF0B1325),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_rounded,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
@@ -37,9 +31,7 @@ class DetailPage extends StatelessWidget {
         builder: (context, constraints) {
           return Center(
             child: SizedBox(
-              width: constraints.maxWidth > 1150
-                  ? 1150
-                  : constraints.maxWidth,
+              width: constraints.maxWidth > 1150 ? 1150 : constraints.maxWidth,
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
                 child: Column(
@@ -73,8 +65,7 @@ class DetailPage extends StatelessWidget {
                                     child: _SpecificationCard(
                                       icon: Icons.memory_rounded,
                                       title: 'Memória RAM',
-                                      value:
-                                          '${hardware.getqtdMemoriaRam} GB',
+                                      value: '${hardware.getqtdMemoriaRam} GB',
                                     ),
                                   ),
                                   const SizedBox(width: 14),
@@ -102,8 +93,7 @@ class DetailPage extends StatelessWidget {
                                     child: _SpecificationCard(
                                       icon: Icons.sd_storage_rounded,
                                       title: 'Tipo de armazenamento',
-                                      value:
-                                          hardware.getTipoArmazenamento.name,
+                                      value: hardware.getTipoArmazenamento.name,
                                     ),
                                   ),
                                 ],
@@ -117,8 +107,7 @@ class DetailPage extends StatelessWidget {
                             _SpecificationCard(
                               icon: Icons.memory_rounded,
                               title: 'Memória RAM',
-                              value:
-                                  '${hardware.getqtdMemoriaRam} GB',
+                              value: '${hardware.getqtdMemoriaRam} GB',
                             ),
                             const SizedBox(height: 12),
                             _SpecificationCard(
@@ -136,8 +125,7 @@ class DetailPage extends StatelessWidget {
                             _SpecificationCard(
                               icon: Icons.sd_storage_rounded,
                               title: 'Tipo de armazenamento',
-                              value:
-                                  hardware.getTipoArmazenamento.name,
+                              value: hardware.getTipoArmazenamento.name,
                             ),
                           ],
                         );
@@ -146,9 +134,7 @@ class DetailPage extends StatelessWidget {
 
                     const SizedBox(height: 14),
 
-                    _BenchmarkCard(
-                      benchmark: hardware.getBenchmark,
-                    ),
+                    _BenchmarkCard(benchmark: hardware.getBenchmark),
 
                     const SizedBox(height: 28),
 
@@ -163,9 +149,7 @@ class DetailPage extends StatelessWidget {
 
                     const SizedBox(height: 14),
 
-                    _MaintenanceCard(
-                      hardware: hardware,
-                    ),
+                    _MaintenanceCard(hardware: hardware),
                   ],
                 ),
               ),
@@ -180,9 +164,7 @@ class DetailPage extends StatelessWidget {
 class _HeaderCard extends StatelessWidget {
   final Hardware hardware;
 
-  const _HeaderCard({
-    required this.hardware,
-  });
+  const _HeaderCard({required this.hardware});
 
   @override
   Widget build(BuildContext context) {
@@ -193,10 +175,7 @@ class _HeaderCard extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF0B1325),
-            Color(0xFF172554),
-          ],
+          colors: [Color(0xFF0B1325), Color(0xFF172554)],
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: const [
@@ -226,15 +205,9 @@ class _HeaderCard extends StatelessWidget {
             children: [
               _ComputerIcon(),
               const SizedBox(width: 18),
-              Expanded(
-                child: _HeaderInformation(
-                  hardware: hardware,
-                ),
-              ),
+              Expanded(child: _HeaderInformation(hardware: hardware)),
               const SizedBox(width: 20),
-              _StatusBadge(
-                statusValue: hardware.getStatus,
-              ),
+              _StatusBadge(statusValue: hardware.getStatus),
             ],
           );
         },
@@ -260,11 +233,7 @@ class _ComputerIcon extends StatelessWidget {
           ),
         ],
       ),
-      child: const Icon(
-        Icons.computer_rounded,
-        color: Colors.white,
-        size: 38,
-      ),
+      child: const Icon(Icons.computer_rounded, color: Colors.white, size: 38),
     );
   }
 }
@@ -272,9 +241,7 @@ class _ComputerIcon extends StatelessWidget {
 class _HeaderInformation extends StatelessWidget {
   final Hardware hardware;
 
-  const _HeaderInformation({
-    required this.hardware,
-  });
+  const _HeaderInformation({required this.hardware});
 
   @override
   Widget build(BuildContext context) {
@@ -304,10 +271,7 @@ class _HeaderInformation extends StatelessWidget {
         const SizedBox(height: 5),
         const Text(
           'Equipamento em atendimento',
-          style: TextStyle(
-            color: Color(0xFF94A3B8),
-            fontSize: 13,
-          ),
+          style: TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
         ),
       ],
     );
@@ -333,9 +297,7 @@ class _SpecificationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: const Color(0xFFE5E7EB),
-        ),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x10000000),
@@ -356,11 +318,7 @@ class _SpecificationCard extends StatelessWidget {
                   color: const Color(0xFFEFF6FF),
                   borderRadius: BorderRadius.circular(11),
                 ),
-                child: Icon(
-                  icon,
-                  color: const Color(0xFF2563EB),
-                  size: 20,
-                ),
+                child: Icon(icon, color: const Color(0xFF2563EB), size: 20),
               ),
               const SizedBox(width: 11),
               Expanded(
@@ -397,9 +355,7 @@ class _SpecificationCard extends StatelessWidget {
 class _BenchmarkCard extends StatelessWidget {
   final double benchmark;
 
-  const _BenchmarkCard({
-    required this.benchmark,
-  });
+  const _BenchmarkCard({required this.benchmark});
 
   @override
   Widget build(BuildContext context) {
@@ -411,9 +367,7 @@ class _BenchmarkCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: const Color(0xFFE5E7EB),
-        ),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x10000000),
@@ -468,18 +422,13 @@ class _BenchmarkCard extends StatelessWidget {
               value: progress,
               minHeight: 9,
               backgroundColor: const Color(0xFFE5E7EB),
-              valueColor: const AlwaysStoppedAnimation(
-                Color(0xFF2563EB),
-              ),
+              valueColor: const AlwaysStoppedAnimation(Color(0xFF2563EB)),
             ),
           ),
           const SizedBox(height: 8),
           const Text(
             'Índice de desempenho do hardware',
-            style: TextStyle(
-              color: Color(0xFF94A3B8),
-              fontSize: 11,
-            ),
+            style: TextStyle(color: Color(0xFF94A3B8), fontSize: 11),
           ),
         ],
       ),
@@ -490,9 +439,7 @@ class _BenchmarkCard extends StatelessWidget {
 class _MaintenanceCard extends StatelessWidget {
   final Hardware hardware;
 
-  const _MaintenanceCard({
-    required this.hardware,
-  });
+  const _MaintenanceCard({required this.hardware});
 
   @override
   Widget build(BuildContext context) {
@@ -502,9 +449,7 @@ class _MaintenanceCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFFE5E7EB),
-        ),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
         boxShadow: const [
           BoxShadow(
             color: Color(0x10000000),
@@ -546,10 +491,7 @@ class _MaintenanceCard extends StatelessWidget {
                     SizedBox(height: 3),
                     Text(
                       'Serviço técnico',
-                      style: TextStyle(
-                        color: Color(0xFF94A3B8),
-                        fontSize: 11,
-                      ),
+                      style: TextStyle(color: Color(0xFF94A3B8), fontSize: 11),
                     ),
                   ],
                 ),
@@ -566,10 +508,7 @@ class _MaintenanceCard extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 18),
-            child: Divider(
-              height: 1,
-              color: Color(0xFFE5E7EB),
-            ),
+            child: Divider(height: 1, color: Color(0xFFE5E7EB)),
           ),
           Row(
             children: [
@@ -589,9 +528,7 @@ class _MaintenanceCard extends StatelessWidget {
                   ),
                 ),
               ),
-              _StatusBadge(
-                statusValue: hardware.getStatus,
-              ),
+              _StatusBadge(statusValue: hardware.getStatus),
             ],
           ),
         ],
@@ -603,9 +540,7 @@ class _MaintenanceCard extends StatelessWidget {
 class _StatusBadge extends StatelessWidget {
   final status statusValue;
 
-  const _StatusBadge({
-    required this.statusValue,
-  });
+  const _StatusBadge({required this.statusValue});
 
   @override
   Widget build(BuildContext context) {
@@ -624,10 +559,7 @@ class _StatusBadge extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 13,
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
       decoration: BoxDecoration(
         color: background,
         borderRadius: BorderRadius.circular(30),

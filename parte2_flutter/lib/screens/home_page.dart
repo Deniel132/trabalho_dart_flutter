@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+
 import '../widget/hardwarecard.dart';
 import '../models/hardware.dart';
-import '../models/Manutencao.dart';
+import '../models/manutencao.dart';
 import '../screens/register_page.dart';
-import '../widget/customAppBar.dart';
+import '../widget/custom_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State createState() => _HomePage();
+  State<HomePage> createState() => _HomePage();
 }
 
-class _HomePage extends State<HomePage>{
+class _HomePage extends State<HomePage> {
   int currentIndex = 0;
   final Manutencao manutencao = Manutencao();
 
@@ -86,18 +87,46 @@ class _HomePage extends State<HomePage>{
       valorManutencao: 120.0,
     );
 
-    manutencao.enviarParaManutencao(h1);
-    manutencao.enviarParaManutencao(h2);
-    manutencao.enviarParaManutencao(h3);
-    manutencao.enviarParaManutencao(h4);
-    manutencao.enviarParaManutencao(h5);
-    manutencao.enviarParaManutencao(h6);
+    manutencao.adicionarManutencao(h1);
+    manutencao.adicionarManutencao(h2);
+    manutencao.adicionarManutencao(h3);
+    manutencao.adicionarManutencao(h4);
+    manutencao.adicionarManutencao(h5);
+    manutencao.adicionarManutencao(h6);
+  }
+
+  // ============================================================
+  // EXERCÍCIO 10
+  // ============================================================
+
+  Future<void> _abrirCadastro() async {
+    final Hardware? novoHardware = await Navigator.of(context).push<Hardware>(
+      MaterialPageRoute(
+        builder: (context) {
+          return RegisterPage(manutencao: manutencao);
+        },
+      ),
+    );
+
+    if (!mounted) return;
+
+    if (novoHardware != null) {
+      setState(() {
+        manutencao.adicionarManutencao(novoHardware);
+        currentIndex = 0;
+      });
+    } else {
+      setState(() {
+        currentIndex = 0;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  const CustomAppBar(titleText: 'Home'),
+      appBar: const CustomAppBar(titleText: 'Home'),
+
       body: LayoutBuilder(
         builder: (context, constraints) {
           return Center(
@@ -156,19 +185,23 @@ class _HomePage extends State<HomePage>{
                                         ),
                                       ],
                                     ),
+
                                     const SizedBox(height: 12),
+
                                     Text(
                                       'R\$ ${manutencao.getValorTotal().toStringAsFixed(2)}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFF0B1325),
                                       ),
                                     ),
+
                                     const SizedBox(height: 4),
+
                                     Text(
                                       '${manutencao.getByStatus([status.AGUARDANDO_PECAS, status.EM_REPARO]).length} manutenções ativas',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
                                         color: Color(0xFF5A6E85),
                                       ),
@@ -221,20 +254,22 @@ class _HomePage extends State<HomePage>{
                                         ),
                                       ],
                                     ),
+
                                     const SizedBox(height: 12),
+
                                     RichText(
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
                                             text:
                                                 '${manutencao.getTotalHardware} ',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 24,
                                               fontWeight: FontWeight.bold,
                                               color: Color(0xFF0B1325),
                                             ),
                                           ),
-                                          TextSpan(
+                                          const TextSpan(
                                             text: 'itens',
                                             style: TextStyle(
                                               fontSize: 14,
@@ -244,7 +279,9 @@ class _HomePage extends State<HomePage>{
                                         ],
                                       ),
                                     ),
+
                                     const SizedBox(height: 4),
+
                                     const Text(
                                       'Na oficina hoje',
                                       style: TextStyle(
@@ -288,7 +325,7 @@ class _HomePage extends State<HomePage>{
                           padding: const EdgeInsets.only(bottom: 16),
                           itemCount: manutencao.getTotalHardware,
                           itemBuilder: (context, index) {
-                            final item = manutencao.getByIndex(index);
+                            final Hardware item = manutencao.getByIndex(index);
 
                             return HardwareCard(hardware: item);
                           },
@@ -302,16 +339,21 @@ class _HomePage extends State<HomePage>{
           );
         },
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (index) async{
-          if (index == 1) {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => RegisterPage(manutencao: manutencao,)),
-            );
+        onTap: (index) async {
+          if (index == 0) {
+            setState(() {
+              currentIndex = 0;
+            });
+          } else if (index == 1) {
+            setState(() {
+              currentIndex = 1;
+            });
+
+            await _abrirCadastro();
           }
-          setState(() {});
         },
         selectedItemColor: Colors.blueAccent,
         unselectedItemColor: Colors.grey,
@@ -323,4 +365,3 @@ class _HomePage extends State<HomePage>{
     );
   }
 }
-
