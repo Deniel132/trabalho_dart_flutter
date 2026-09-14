@@ -1,6 +1,6 @@
 import './models/hardware.dart';
 import './models/pc.dart';
-import 'models/Manutencao.dart';
+import 'models/manutencao.dart';
 
 void main() {
   print("===== [1] ENTIDADE PRINCIPAL =====\n");
