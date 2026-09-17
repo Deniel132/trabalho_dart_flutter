@@ -95,10 +95,6 @@ class _HomePage extends State<HomePage> {
     manutencao.adicionarManutencao(h6);
   }
 
-  // ============================================================
-  // EXERCÍCIO 10
-  // ============================================================
-
   Future<void> _abrirCadastro() async {
     final Hardware? novoHardware = await Navigator.of(context).push<Hardware>(
       MaterialPageRoute(
