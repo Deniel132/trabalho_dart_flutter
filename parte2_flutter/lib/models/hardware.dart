@@ -55,4 +55,4 @@ class Hardware {
 
 enum tipoArmazenamento { HD, SSD }
 
-enum status { EM_REPARO, AGUARDANDO_PECAS, CONCLUIDO}
+enum status { EM_REPARO, AGUARDANDO_PECAS, CONCLUIDO }

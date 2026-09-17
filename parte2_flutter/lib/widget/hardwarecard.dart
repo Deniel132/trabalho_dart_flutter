@@ -32,25 +32,9 @@ class _HardwareCardState extends State<HardwareCard> {
 
   void _abrirDetalhes() {
     Navigator.of(context).push(
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 450),
-        reverseTransitionDuration: const Duration(milliseconds: 350),
-        pageBuilder: (context, animation, secondaryAnimation) {
+      MaterialPageRoute(
+        builder: (context) {
           return DetailPage(hardware: widget.hardware);
-        },
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          final slide =
-              Tween<Offset>(
-                begin: const Offset(0.08, 0),
-                end: Offset.zero,
-              ).animate(
-                CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
-              );
-
-          return FadeTransition(
-            opacity: animation,
-            child: SlideTransition(position: slide, child: child),
-          );
         },
       ),
     );
