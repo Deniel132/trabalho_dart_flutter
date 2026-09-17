@@ -5,9 +5,16 @@
 - Tiago Toshimitsu
 
 
-# Tema do projeto
-    Este Projeto e composto de uma sistema de gerenciamento de manutenções de hardware,
 
+
+# Tema do projeto
+
+~~~~
+    O projeto tem como tema a manutenção de hardware, sendo composto pelas entidades
+Hardware, PC e Manutencao, onde PC é uma especialização de Hardware por meio
+de herança, enquanto Manutencao agrupa objetos Hardware para representar os
+equipamentos que estão em manutenção.
+~~~~
 
 ---
 
@@ -22,11 +29,17 @@
 | 5 | Estrutura de tela | `parte2-flutter/lib/screens/home_page.dart:99`            | AppBar e corpo da tela inicial |
 | 6 | Cartão | `parte2-flutter/lib/screens/widgets/hardwareCard.dart:63` | Cada item da lista |
 | 7 | Lista | `parte2-flutter/lib/screens/home_page.dart:277`           | Lista rolável com seis itens |
-| 8 | Navegação | `parte2-flutter/lib/screens/home_page.dart:30`            | Toque no item abre o detalhe |
-| 9 | Formulário | `parte2-flutter/lib/screens/cadastro_page.dart:18`        | Tela de cadastro |
-| 10 | Estado | `parte2-flutter/lib/screens/home_page.dart:40`            | Item novo na lista e total atualizado |
+| 8 | Navegação | `parte2-flutter/lib/screens/hardwareCard.dart:33`         | Toque no item abre o detalhe |
+| 9 | Formulário | `parte2-flutter/lib/screens/register_page.dart:139`       | Tela de cadastro |
+| 10 | Estado | `parte2-flutter/lib/screens/register_page.dart:102`       | Item novo na lista e total atualizado |
 
 ---
+
+## Uso de Composição e não Herança
+~~~~
+    Emquanto a classe PC utiliza herança por ser um tipo de Hardware, 
+    manutencao utiliza composição por possuir e gerenciar uma lista de objetos Hardware.
+~~~~
 
 ## Tecnologias utilizadas
 
@@ -39,6 +52,10 @@
 - ## Parte 1
 
 ~~~
+
+- Entre na pasta do projeto Dart:
+    cd parte1-dart
+    
 - Execute:
     dart run
 
@@ -48,9 +65,13 @@
 ~~~
 - ## Parte 2
 ~~~
-Execute:
+
+- Entre na pasta do projeto Flutter:
+    cd parte2-flutter
+
+- Execute:
     flutter run
 
-Para verificar possíveis problemas:
+- Para verificar possíveis problemas:
     flutter analyze
 ~~~
